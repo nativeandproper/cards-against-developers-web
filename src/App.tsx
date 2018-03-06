@@ -1,5 +1,5 @@
 import * as React from 'react';
-import './App.css';
+import './styles/App.css';
 
 // Components
 import TestContainer from './containers/test_container';
