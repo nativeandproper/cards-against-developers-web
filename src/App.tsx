@@ -1,24 +1,104 @@
 import * as React from 'react';
-import './styles/App.css';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  RouteComponentProps
+} from 'react-router-dom';
 
 // Components
 import TestContainer from './containers/test_container';
 
-const logo = require('./logo.svg');
+// Styles
+import './styles/App.css';
 
-class App extends React.Component {
+interface MatchParams {
+    name: string;
+    topicId: string;
+}
+
+interface Props extends RouteComponentProps<MatchParams> {
+}
+
+const Home = () => (
+  <div>
+    <h2>Home</h2>
+    <TestContainer name="test container" />
+  </div>
+);
+
+const About = () => (
+  <div>
+    <h2>About</h2>
+  </div>
+);
+
+const Topic: React.SFC<Props> = ({ match }) => (
+  <div>
+    <h3>{match.params.topicId}</h3>
+  </div>
+);
+
+const Topics: React.SFC<Props> = ({ match }) => (
+  <div>
+    <h2>Topics</h2>
+    <ul>
+      <li>
+        <Link to={`${match.url}/rendering`}>
+          Rendering with React
+        </Link>
+      </li>
+      <li>
+        <Link to={`${match.url}/components`}>
+          Components
+        </Link>
+      </li>
+      <li>
+        <Link to={`${match.url}/props-v-state`}>
+          Props v. State
+        </Link>
+      </li>
+    </ul>
+
+    <Route path={`${match.path}/:topicId`} component={Topic}/>
+    <Route
+      exact={true}
+      path={match.path}
+      render={() => (
+        <h3>Please select a topic.</h3>
+      )}
+    />
+  </div>
+);
+
+class App extends React.Component<{}, {}> {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <TestContainer />
+      <Router>
+      <div>
+        <ul>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/about">About</Link></li>
+          <li><Link to="/topics">Topics</Link></li>
+        </ul>
+  
+        <hr/>
+  
+        <Route
+          exact={true}
+          path="/"
+          component={Home}
+        />
+        <Route
+          path="/about"
+          component={About}
+        />
+        <Route
+          path="/topics"
+          component={Topics}
+        />
       </div>
+    </Router>
     );
   }
 }

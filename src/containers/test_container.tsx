@@ -1,10 +1,14 @@
 import * as React from 'react';
 
-class TestContainer extends React.Component {
+export interface TestContainerProps {
+  name: string;
+}
+
+class TestContainer extends React.Component<TestContainerProps, {}> {
   render() {
     return (
       <div>
-        TestContainer
+        Hello from {this.props.name}
       </div>
     );
   }
