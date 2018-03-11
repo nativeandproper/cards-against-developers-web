@@ -31,7 +31,7 @@ export default class Home extends React.Component<HomeProps, {}> {
               a RESTful api for <b>bad</b> developers and <b><i>even</i> worse</b> human beings.
             </h2>
           </div>
-          <div className="login-signup">
+          <div className="login-signup-buttons">
             <ButtonLink
               to="/login"
               classes="nav-button"
