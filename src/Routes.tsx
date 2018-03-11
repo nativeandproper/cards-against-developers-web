@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom';
 
 // Components
-import HomePage from './containers/HomePage';
+import Home from './containers/Home';
 
 interface MatchParams {
     name: string;
@@ -61,7 +61,7 @@ const Routes: React.SFC<{}> = () => (
       <Route
         exact={true}
         path="/"
-        component={HomePage}
+        component={Home}
       />
       <Route
         path="/topics"

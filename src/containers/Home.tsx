@@ -4,11 +4,11 @@ import * as React from 'react';
 import ButtonLink from '../components/ButtonLink';
 
 // Styles
-import '../styles/HomePage.css';
+import '../styles/Home.css';
 
-export interface HomePageProps {}
+export interface HomeProps {}
 
-class HomePage extends React.Component<HomePageProps, {}> {
+class Home extends React.Component<HomeProps, {}> {
   render() {
     return (
       <div className="home">
@@ -53,4 +53,4 @@ class HomePage extends React.Component<HomePageProps, {}> {
   }
 }
 
-export default HomePage;
+export default Home;
