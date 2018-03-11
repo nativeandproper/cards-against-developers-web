@@ -1,16 +1,13 @@
 import * as React from 'react';
 import {
-  BrowserRouter as Router,
+  BrowserRouter,
   Route,
   Link,
   RouteComponentProps
 } from 'react-router-dom';
 
 // Components
-import TestContainer from './containers/test_container';
-
-// Styles
-import './styles/App.css';
+import HomePage from './containers/HomePage';
 
 interface MatchParams {
     name: string;
@@ -19,19 +16,6 @@ interface MatchParams {
 
 interface Props extends RouteComponentProps<MatchParams> {
 }
-
-const Home = () => (
-  <div>
-    <h2>Home</h2>
-    <TestContainer name="test container" />
-  </div>
-);
-
-const About = () => (
-  <div>
-    <h2>About</h2>
-  </div>
-);
 
 const Topic: React.SFC<Props> = ({ match }) => (
   <div>
@@ -71,36 +55,20 @@ const Topics: React.SFC<Props> = ({ match }) => (
   </div>
 );
 
-class App extends React.Component<{}, {}> {
-  render() {
-    return (
-      <Router>
-      <div>
-        <ul>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/about">About</Link></li>
-          <li><Link to="/topics">Topics</Link></li>
-        </ul>
-  
-        <hr/>
-  
-        <Route
-          exact={true}
-          path="/"
-          component={Home}
-        />
-        <Route
-          path="/about"
-          component={About}
-        />
-        <Route
-          path="/topics"
-          component={Topics}
-        />
-      </div>
-    </Router>
-    );
-  }
-}
+const Routes: React.SFC<{}> = () => (
+  <BrowserRouter>
+    <div id="app">
+      <Route
+        exact={true}
+        path="/"
+        component={HomePage}
+      />
+      <Route
+        path="/topics"
+        component={Topics}
+      />
+    </div>
+  </BrowserRouter>
+);
 
-export default App;
+export default Routes;

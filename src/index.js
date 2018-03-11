@@ -1,11 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+
+// Local Imports
 import registerServiceWorker from './registerServiceWorker';
 
+// Components
+import Routes from './Routes';
+
+// Styles
+import './index.css';
+
 ReactDOM.render(
-  <App />,
+  <Routes />,
   document.getElementById('root')
 );
 registerServiceWorker();
