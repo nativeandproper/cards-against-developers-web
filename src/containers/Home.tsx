@@ -8,7 +8,7 @@ import '../styles/Home.css';
 
 export interface HomeProps {}
 
-class Home extends React.Component<HomeProps, {}> {
+export default class Home extends React.Component<HomeProps, {}> {
   render() {
     return (
       <div className="home">
@@ -18,11 +18,12 @@ class Home extends React.Component<HomeProps, {}> {
               classes="nav-button"
               name="about"
             />
-            <ButtonLink
-              to="/docs"
-              classes="nav-button"
-              name="docs"
-            />
+            <a
+              className="nav-button"
+              href="https://www.gitbook.com/"
+            >
+              docs
+            </a>
         </div>
         <div className="home-center">
           <div className="motto">
@@ -52,5 +53,3 @@ class Home extends React.Component<HomeProps, {}> {
     );
   }
 }
-
-export default Home;

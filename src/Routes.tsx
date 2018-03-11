@@ -8,6 +8,7 @@ import {
 
 // Components
 import Home from './containers/Home';
+import About from './containers/About';
 
 interface MatchParams {
     name: string;
@@ -62,6 +63,10 @@ const Routes: React.SFC<{}> = () => (
         exact={true}
         path="/"
         component={Home}
+      />
+      <Route
+        path="/about"
+        component={About}
       />
       <Route
         path="/topics"
