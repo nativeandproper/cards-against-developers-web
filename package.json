@@ -19,7 +19,7 @@
     "build-js": "react-scripts-ts build",
     "build": "npm-run-all build-css build-js",
     "deploy": "aws s3 sync ./build s3://cards-against-developers-web",
-    "test": "react-scripts-ts test --env=jsdom",
+    "test": "react-scripts-ts test --env=jsdom"
   },
   "devDependencies": {
     "@types/jest": "^22.1.4",

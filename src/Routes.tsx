@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {
+  Switch,
   BrowserRouter,
   Route,
   Link,
@@ -10,7 +11,7 @@ import {
 import Home from './containers/Home';
 import About from './containers/About';
 import Login from './containers/Login';
-import Signup from './containers/Signup';
+import SignupRoutes from './routes/SignupRoutes';
 
 interface MatchParams {
     name: string;
@@ -61,27 +62,29 @@ const Topics: React.SFC<Props> = ({ match }) => (
 const Routes: React.SFC<{}> = () => (
   <BrowserRouter>
     <div id="app">
-      <Route
-        exact={true}
-        path="/"
-        component={Home}
-      />
-      <Route
-        path="/about"
-        component={About}
-      />
-      <Route
-        path="/login"
-        component={Login}
-      />
-      <Route
-        path="/signup"
-        component={Signup}
-      />
-      <Route
-        path="/topics"
-        component={Topics}
-      />
+      <Switch>
+        <Route
+          exact={true}
+          path="/"
+          component={Home}
+        />
+        <Route
+          path="/about"
+          component={About}
+        />
+        <Route
+          path="/login"
+          component={Login}
+        />
+        <Route
+          path="/signup"
+          component={SignupRoutes}
+        />
+        <Route
+          path="/topics"
+          component={Topics}
+        />
+      </Switch>
     </div>
   </BrowserRouter>
 );

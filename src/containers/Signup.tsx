@@ -4,9 +4,7 @@ import { Link } from 'react-router-dom';
 // Styles
 import '../styles/LoginSignup.css';
 
-export interface SignupProps {}
-
-export default class Signup extends React.Component<SignupProps, {}> {
+export default class Signup extends React.Component<{}, {}> {
   render() {
     return (
       <div className="login-signup">
