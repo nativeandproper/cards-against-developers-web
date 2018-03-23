@@ -13,7 +13,7 @@ export default class SignupConfirmation extends React.Component<SignupConfirmati
           Hey Bud!
         </h1>
         <h1>
-          {`sorry ${`NAME`}, we're not actually buds just yet`}
+          {`(sorry ${`NAME`}, we're not actually buds just yet)`}
         </h1>
         <div className="thanks-bud-img" />
         <div className="confirmation-copy">
