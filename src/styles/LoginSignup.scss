@@ -13,6 +13,16 @@
   .login-signup-form {
     width: 100%;
 
+    .error {
+      display: none;
+      font-size: 11px;
+      color: #fd7277;
+    }
+
+    .error-show {
+      display: block;
+    }
+
     input {
       font-size: 14px;
       width: 100%;
