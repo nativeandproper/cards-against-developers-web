@@ -1,5 +1,9 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
+import {
+  Link,
+  withRouter,
+  RouteComponentProps
+} from 'react-router-dom';
 
 import {
   invalidFirstName,
@@ -11,7 +15,7 @@ import {
 // Styles
 import '../styles/LoginSignup.css';
 
-export interface SignupProps {}
+export interface SignupProps extends RouteComponentProps<{}> {}
 export interface SignupState {
   firstName: string;
   lastName: string;
@@ -24,7 +28,7 @@ export interface SignupState {
   passwordHasError: boolean;
 }
 
-export default class Signup extends React.Component<SignupProps, Partial<SignupState>> {
+class Signup extends React.Component<SignupProps, Partial<SignupState>> {
   constructor(props: SignupProps) {
     super(props);
 
@@ -70,6 +74,9 @@ export default class Signup extends React.Component<SignupProps, Partial<SignupS
 
     if (this.isValidForm()) {
       console.log('signup data to POST: ', this.state);
+      this.props.history.push('/signup/confirmation', {
+        firstName: this.state.firstName
+      });
     } else {
       e.preventDefault();
     }
@@ -139,3 +146,5 @@ export default class Signup extends React.Component<SignupProps, Partial<SignupS
     );
   }
 }
+
+export default withRouter(Signup);

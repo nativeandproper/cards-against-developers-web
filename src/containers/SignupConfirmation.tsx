@@ -1,9 +1,10 @@
 import * as React from 'react';
+import { RouteComponentProps } from 'react-router-dom';
 
 // Styles
 import '../styles/SignupConfirmation.css';
 
-export interface SignupConfirmationProps {}
+export interface SignupConfirmationProps extends RouteComponentProps<{}> {}
 
 export default class SignupConfirmation extends React.Component<SignupConfirmationProps, {}> {
   render() {
@@ -13,7 +14,7 @@ export default class SignupConfirmation extends React.Component<SignupConfirmati
           Hey Bud!
         </h1>
         <h1>
-          {`(sorry ${`NAME`}, we're not actually buds just yet)`}
+          {`(sorry ${this.props.location.state.firstName}, we're not actually buds just yet)`}
         </h1>
         <div className="thanks-bud-img" />
         <div className="confirmation-copy">

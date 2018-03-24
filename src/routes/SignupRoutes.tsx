@@ -2,6 +2,7 @@ import * as React from 'react';
 import {
   Switch,
   Route,
+  Redirect,
   withRouter,
   RouteComponentProps
 } from 'react-router-dom';
@@ -26,7 +27,18 @@ const SignupRoutes: React.SFC<Props> = ({ match }) => (
     <Route
       exact={true}
       path={`${match.url}/confirmation`}
-      component={SignupConfirmation}
+      render={(props) => {
+        return props.location.state ? (
+          <SignupConfirmation {...props} />
+        ) : (
+          <Redirect
+            to={{
+              pathname: '/',
+              state: { from: props.location }
+            }}
+          />
+        );
+      }}
     />
   </Switch>
 );
