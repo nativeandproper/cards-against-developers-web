@@ -18,5 +18,7 @@ export const invalidEmail = (email: string): boolean => {
 };
 
 export const invalidPassword = (password: string): boolean => {
-  return R.isEmpty(password) || R.lt(password.length, 5) || R.gt(password.length, 32);
+  return (
+    R.isEmpty(password) || R.lt(password.length, 5) || R.gt(password.length, 32)
+  );
 };
