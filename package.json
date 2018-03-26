@@ -15,13 +15,16 @@
   },
   "scripts": {
     "build-css": "node-sass-chokidar src/ -o src/",
-    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
+    "watch-css":
+      "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
     "start-js": "react-scripts-ts start",
     "start": "npm-run-all -p watch-css start-js",
     "build-js": "react-scripts-ts build",
     "build": "npm-run-all build-css build-js",
     "deploy": "aws s3 sync ./build s3://cards-against-developers-web",
-    "test": "react-scripts-ts test --env=jsdom"
+    "test": "react-scripts-ts test --env=jsdom",
+    "format":
+      "prettier --parser typescript --single-quote --trailing-comma=all --write \"./**/*.{ts,tsx}\""
   },
   "devDependencies": {
     "@types/jest": "^22.1.4",
@@ -29,6 +32,8 @@
     "@types/react": "^16.0.40",
     "@types/react-dom": "^16.0.4",
     "@types/react-router": "^4.0.22",
+    "prettier": "1.11.1",
+    "tslint-config-prettier": "^1.10.0",
     "typescript": "^2.7.2"
   }
 }

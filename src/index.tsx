@@ -10,8 +10,5 @@ import Routes from './Routes';
 // Styles
 import './index.css';
 
-ReactDOM.render(
-  <Routes />,
-  document.getElementById('root') as HTMLElement
-);
+ReactDOM.render(<Routes />, document.getElementById('root') as HTMLElement);
 registerServiceWorker();

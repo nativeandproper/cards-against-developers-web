@@ -1,5 +1,5 @@
 # Cards Against Developers Web
-Web Client for Cards Agains Developers API
+Web Client for Cards Against Developers API
 
 ## Available Scripts
 
