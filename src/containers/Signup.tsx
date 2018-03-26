@@ -1,6 +1,8 @@
 import * as React from "react";
 import { Link, withRouter, RouteComponentProps } from "react-router-dom";
 
+import apiClient from "../lib/apiClient";
+
 import {
   invalidFirstName,
   invalidLastName,
@@ -13,6 +15,7 @@ import "../styles/LoginSignup.css";
 
 export interface ISignupProps extends RouteComponentProps<{}> {}
 export interface ISignupState {
+  accountError: string;
   attemptedSubmit: boolean;
   firstName: string;
   firstNameHasError: boolean;
@@ -29,6 +32,7 @@ class Signup extends React.Component<ISignupProps, Partial<ISignupState>> {
     super(props);
 
     this.state = {
+      accountError: "",
       attemptedSubmit: false,
       email: "",
       emailHasError: false,
@@ -70,15 +74,27 @@ class Signup extends React.Component<ISignupProps, Partial<ISignupState>> {
 
   validateAndSubmit = (e: React.SyntheticEvent<HTMLElement>) => {
     this.setState({
+      accountError: "",
       attemptedSubmit: true
     });
 
     if (this.isValidForm()) {
-      console.log("signup data to POST: ", this.state);
+      const { firstName, lastName, email, password } = this.state;
+      const request = { email, firstName, lastName, password };
 
-      this.props.history.push("/signup/confirmation", {
-        firstName: this.state.firstName
-      });
+      apiClient("POST", "/signup", request)
+        .then(resp => {
+          this.props.history.push("/signup/confirmation", {
+            firstName: this.state.firstName
+          });
+        })
+        .catch(err => {
+          err.text().then((errorMsg: string) => {
+            this.setState({
+              accountError: errorMsg
+            });
+          });
+        });
     } else {
       e.preventDefault();
     }
@@ -107,7 +123,8 @@ class Signup extends React.Component<ISignupProps, Partial<ISignupState>> {
         <h1>Sign Up</h1>
         <div className="login-signup-form">
           <div className={firstNameErrorClasses}>
-            Your first name cannot be empty and must be less than 32 characters
+            Your first name cannot be empty and must be between 3 and 32
+            characters
           </div>
           <input
             type="text"
@@ -116,7 +133,8 @@ class Signup extends React.Component<ISignupProps, Partial<ISignupState>> {
             onChange={e => this.handleChange("firstName", e.target.value)}
           />
           <div className={lastNameErrorClasses}>
-            Your last name cannot be empty and must be less than 32 characters
+            Your last name cannot be empty and must be between 3 and 32
+            characters
           </div>
           <input
             type="text"
@@ -125,7 +143,7 @@ class Signup extends React.Component<ISignupProps, Partial<ISignupState>> {
             onChange={e => this.handleChange("lastName", e.target.value)}
           />
           <div className={emailErrorClasses}>
-            Your email must be a valid email e.g. swaglord@gmail.com
+            Your email must be a valid email e.g. nativeandproper@gmail.com
           </div>
           <input
             type="text"
@@ -142,6 +160,9 @@ class Signup extends React.Component<ISignupProps, Partial<ISignupState>> {
             value={this.state.password}
             onChange={e => this.handleChange("password", e.target.value)}
           />
+          {this.state.accountError && (
+            <div className="error error-show">{this.state.accountError}</div>
+          )}
         </div>
         <div className="login-signup-cta">
           <button className="submit-button" onClick={this.validateAndSubmit}>
