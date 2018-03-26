@@ -1,12 +1,15 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 
+import apiClient from "../lib/apiClient";
+
 // Styles
 import "../styles/LoginSignup.css";
 
 export interface ILoginProps {}
 export interface ILoginState {
   email: string;
+  loginError: string;
   password: string;
 }
 
@@ -19,6 +22,7 @@ export default class Login extends React.Component<
 
     this.state = {
       email: "",
+      loginError: "",
       password: ""
     };
   }
@@ -30,7 +34,20 @@ export default class Login extends React.Component<
   };
 
   login = () => {
-    console.log("login data to POST: ", this.state);
+    const { email, password } = this.state;
+    const request = { email, password };
+
+    apiClient("POST", "/login", request)
+      .then((resp: any) => {
+        // TODO: redirect user
+      })
+      .catch(err => {
+        err.text().then((errorMsg: string) => {
+          this.setState({
+            loginError: errorMsg
+          });
+        });
+      });
   };
 
   render() {
@@ -50,6 +67,9 @@ export default class Login extends React.Component<
             value={this.state.password}
             onChange={e => this.handleChange("password", e.target.value)}
           />
+          {this.state.loginError && (
+            <div className="error error-show">{this.state.loginError}</div>
+          )}
         </div>
         <div className="login-signup-cta">
           <button className="submit-button" onClick={this.login}>
