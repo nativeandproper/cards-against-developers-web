@@ -1,26 +1,2 @@
-# Cards Against Developers Web
-Web Client for Cards Against Developers API
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-### `npm run deploy`
-
-Deploys app within the `build` folder to S3. You need to have Amazon CLI set up correctly and access to the production bucket.
+# Cards Against Developers Web - DEPRECATED
+This project is no longer being contributed to. You can find the main web client [HERE](https://github.com/nativeandproper/cards-against-developers) instead.
